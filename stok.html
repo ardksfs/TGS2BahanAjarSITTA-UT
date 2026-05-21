@@ -67,6 +67,9 @@
                     <div class="col-md-1">
                         <input v-model.number="form.qty" type="number" class="form-control" placeholder="Qty">
                     </div>
+                    <div class="col-md-1">
+                        <input v-model.number="form.safety" type="number" class="form-control" placeholder="Safety">
+                    </div>
 
                     <div class="col-md-2">
                         <select v-model="form.upbjj" class="form-select">
@@ -125,14 +128,14 @@
                                 </td>
                                 <td>
                                     <span class="status-pill" :class="{
-                                        'status-aman': item.qty >= item.safety,
-                                        'status-menipis': item.qty < item.safety && item.qty > 0,
+                                        'status-aman': item.qty > item.safety,
+                                        'status-menipis': item.qty <= item.safety && item.qty > 0,
                                         'status-kosong': item.qty === 0
                                     }">
                                         {{
-                                        item.qty === 0
-                                        ? 'Kosong'
-                                        : item.qty < item.safety ? 'Menipis' : 'Aman' }} </span>
+                                        item.qty <= item.safety
+                                        ? 'Menipis'
+                                        : 'Aman' }} </span>
                                 </td>
                             </tr>
                         </tbody>
@@ -166,9 +169,9 @@
     </main>
     </div> -->
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="js/stok-app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="js/stok-app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
